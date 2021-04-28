@@ -10,13 +10,14 @@ def lambda_handler(event, context):
     # Accessing the event
     foo = event['Records'][0]['s3']['object']['key']
     print(foo)
+    # Here you could access the bucket name and file key (i.e. its path)
 
+    # Accessing environmental variables
     my_var = os.environ.get('MY_VAR')
     print('Env. variable is: ', my_var)
 
-    # Accessing 
-
-    # boto3: get the file -> process -> some result
+    # Process files from S3
+    # boto3: get the file via its key -> process -> some result
     # result -> (python client) -> graph db
     
     return {
