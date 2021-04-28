@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Parameters :
+    myvar :
+        Type: String
+        Default: foobar
+Resources:
+  test4stefanos:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: app
+      Description: 'Write something here'
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::xxxxxxxxxxxx:role/lambda-s3-execution-role'
+      Environment:
+        Variables:
+            MY_VAR: !Ref myvar
+      Events:
+        Schedule1:
+            Type: Schedule
+            Properties:
+                Schedule: cron(0 5 * * ? *)
+            Enabled: False
+
+      #Layers:
+      #  - >-
+      #    arn:aws:lambda:eu-west-2:xxxxxxxxxxxx:layer:layername:1
