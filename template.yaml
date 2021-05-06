@@ -25,7 +25,13 @@ Resources:
             Properties:
                 Schedule: cron(0 5 * * ? *)
             Enabled: False
-
-      #Layers:
-      #  - >-
-      #    arn:aws:lambda:eu-west-2:xxxxxxxxxxxx:layer:layername:1
+  georgeBar:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: app2
+      Description: 'Yet another description'
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::914786277218:role/LambdaWiths3FullAccess'
